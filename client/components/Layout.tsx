@@ -164,7 +164,7 @@ export default function Layout({ children }: PropsWithChildren) {
           </div>
 
           <div className="max-w-content mx-auto px-6 pt-16 pb-8 relative z-10">
-            <div className="grid md:grid-cols-4 gap-10 mb-14">
+            <div className="grid md:grid-cols-[1fr_auto_auto] gap-10 md:gap-20 mb-14">
               <div className="space-y-5">
                 <Link to="/" className="flex items-center gap-3">
                   <img
@@ -212,7 +212,7 @@ export default function Layout({ children }: PropsWithChildren) {
                 </ul>
               </div>
 
-              <div className="space-y-4">
+              <div className="space-y-4 md:text-right">
                 <h3 className="font-['DM_Mono'] text-xs text-white/30 uppercase tracking-widest">
                   Company
                 </h3>
@@ -233,42 +233,11 @@ export default function Layout({ children }: PropsWithChildren) {
                 </ul>
               </div>
 
-              <div className="space-y-4">
-                <h3 className="font-['DM_Mono'] text-xs text-white/30 uppercase tracking-widest">
-                  Legal
-                </h3>
-                <ul className="space-y-3 text-sm text-white/60">
-                  <li>
-                    <Link
-                      to="/terms"
-                      className="hover:text-white transition-colors"
-                    >
-                      Terms
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      to="/privacy"
-                      className="hover:text-white transition-colors"
-                    >
-                      Privacy
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      to="/subscription-terms"
-                      className="hover:text-white transition-colors"
-                    >
-                      Subscription Terms
-                    </Link>
-                  </li>
-                </ul>
-              </div>
             </div>
 
             <div className="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-white/10">
               <div className="font-['DM_Mono'] text-xs text-white/30">
-                &copy; 2025 Studevo. All rights reserved.
+                &copy; 2026 Studevo. All rights reserved.
               </div>
               <div className="flex gap-6 mt-4 md:mt-0">
                 <Link
@@ -282,6 +251,12 @@ export default function Layout({ children }: PropsWithChildren) {
                   className="text-xs text-white/30 hover:text-white/60 transition-colors"
                 >
                   Privacy
+                </Link>
+                <Link
+                  to="/subscription-terms"
+                  className="text-xs text-white/30 hover:text-white/60 transition-colors"
+                >
+                  Subscription Terms
                 </Link>
               </div>
             </div>

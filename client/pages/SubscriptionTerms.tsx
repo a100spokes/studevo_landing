@@ -3,7 +3,7 @@ import Layout from "@/components/Layout";
 export default function SubscriptionTerms() {
   return (
     <Layout>
-      <section className="relative py-10 lg:py-12 px-6 overflow-hidden">
+      <section className="relative pt-24 pb-10 lg:pt-28 lg:pb-12 px-6 overflow-hidden">
         <div className="absolute -top-20 -right-20 w-[400px] h-[400px] bg-sunbeam/10 rounded-full blur-3xl pointer-events-none" aria-hidden />
         <div className="max-w-4xl mx-auto relative z-10">
           <div className="mb-12">

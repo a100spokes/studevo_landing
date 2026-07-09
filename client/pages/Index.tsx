@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import Layout from "@/components/Layout";
 
 import {
@@ -8,7 +9,6 @@ import {
   BookOpen,
   Zap,
   CheckCircle,
-  Users,
   Clock,
   Play,
   GraduationCap,
@@ -58,10 +58,10 @@ export default function Index() {
       iconColor: "text-iris",
     },
     {
-      icon: Users,
-      title: "Community Learning",
+      icon: Brain,
+      title: "AI Coach",
       description:
-        "Connect with other learners, share insights, and collaborate on AI projects in our community.",
+        "Learn with a personal AI tutor that guides you through the material, asks questions, runs quizzes, and adapts to your pace.",
       accent: "bg-sunbeam",
       iconColor: "text-ink",
     },
@@ -130,19 +130,36 @@ export default function Index() {
     },
   ];
 
+  const heroLogoRef = useRef<HTMLImageElement>(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!heroLogoRef.current) return;
+      const scrollY = window.scrollY;
+      const rotate = scrollY * 0.05;
+      const translateX = scrollY * 0.3;
+      const opacity = Math.max(0.07 - scrollY * 0.0001, 0);
+      heroLogoRef.current.style.transform = `rotate(${rotate}deg) translateX(${translateX}px)`;
+      heroLogoRef.current.style.opacity = `${opacity}`;
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <Layout>
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center overflow-hidden">
-        {/* Large vector logo — shifted to the right */}
+      <section className="relative min-h-screen flex items-center overflow-hidden pt-24">
+        {/* Large vector logo — fixed, scrolls behind next section */}
         <div
-          className="absolute inset-0 flex items-center justify-end pointer-events-none"
+          className="fixed inset-0 flex items-center justify-end pointer-events-none z-0"
           aria-hidden
         >
           <img
+            ref={heroLogoRef}
             src="/logo/Vector 1.png"
             alt=""
-            className="w-[50vw] sm:w-[45vw] lg:w-[38vw] max-w-[550px] opacity-[0.07] mr-[-5vw] lg:mr-[5vw] animate-hero-float select-none"
+            className="w-[50vw] sm:w-[45vw] lg:w-[38vw] max-w-[550px] opacity-[0.07] mr-[-5vw] lg:mr-[5vw] select-none transition-none"
           />
         </div>
 
@@ -164,7 +181,7 @@ export default function Index() {
               </span>
             </div>
 
-            <h1 className="text-5xl sm:text-6xl lg:text-[80px] xl:text-[96px] text-ink leading-[0.95] tracking-[-0.04em] animate-hero-slide-up">
+            <h1 className="text-5xl sm:text-6xl lg:text-[80px] xl:text-[96px] font-bold text-ink leading-[0.95] tracking-[-0.04em] animate-hero-slide-up">
               Master AI tools
               <br />
               with{" "}
@@ -193,6 +210,7 @@ export default function Index() {
                 Browse tutorials
               </a>
             </div>
+
           </div>
         </div>
       </section>
@@ -200,7 +218,7 @@ export default function Index() {
       {/* About Section */}
       <section
         id="about"
-        className="relative py-16 sm:py-20 px-6 overflow-hidden"
+        className="relative py-16 sm:py-20 px-6 overflow-hidden bg-chalk z-10"
       >
         {/* Background accent */}
         <div
@@ -330,7 +348,7 @@ export default function Index() {
       {/* Features Section */}
       <section
         id="features"
-        className="relative py-16 sm:py-20 px-6 overflow-hidden"
+        className="relative py-16 sm:py-20 px-6 overflow-hidden bg-chalk z-10"
       >
         {/* Background accent */}
         <div
@@ -398,7 +416,7 @@ export default function Index() {
       {/* Tutorials Section */}
       <section
         id="tutorials"
-        className="relative pt-16 sm:pt-20 pb-6 px-6 overflow-hidden bg-gradient-to-l from-[#f5f0e0]/40 via-transparent to-transparent"
+        className="relative pt-16 sm:pt-20 pb-6 px-6 overflow-hidden bg-chalk bg-gradient-to-l from-[#f5f0e0]/40 via-chalk to-chalk z-10"
       >
         {/* Background accent */}
         <div
@@ -479,82 +497,37 @@ export default function Index() {
       </section>
 
       {/* Stats */}
-      <section className="py-4 sm:py-6 px-6">
+      <section className="py-4 sm:py-6 px-6 bg-chalk z-10 relative">
         <div className="max-w-content mx-auto">
-          <div className="bg-ink rounded-[1.25rem] border-2 border-ink px-6 sm:px-8 py-10 sm:py-14">
-            <div className="grid grid-cols-3 gap-4 sm:gap-6 text-center">
+          <div className="relative bg-hi-yellow rounded-[1.25rem] px-6 sm:px-8 py-10 sm:py-14 overflow-hidden">
+            <div className="absolute -bottom-14 -right-20 pointer-events-none opacity-20" aria-hidden>
+              <img src="/logo/Vector 1.png" alt="" className="w-40 sm:w-52" />
+            </div>
+            <div className="relative z-10 grid grid-cols-3 gap-4 sm:gap-6 text-center">
               <div>
-                <div className="text-2xl sm:text-4xl lg:text-5xl text-white tracking-[-0.03em]">
-                  100+
-                </div>
-                <div className="font-['DM_Mono'] text-[10px] sm:text-xs text-white/40 uppercase tracking-widest mt-2 sm:mt-3">
-                  Courses
-                </div>
+                <div className="text-2xl sm:text-4xl lg:text-5xl text-ink tracking-[-0.03em]">100+</div>
+                <div className="font-['DM_Mono'] text-[10px] sm:text-xs text-ink/40 uppercase tracking-widest mt-2 sm:mt-3">Courses</div>
               </div>
-              <div className="border-x border-white/10">
-                <div className="text-2xl sm:text-4xl lg:text-5xl text-white tracking-[-0.03em]">
-                  15k+
-                </div>
-                <div className="font-['DM_Mono'] text-[10px] sm:text-xs text-white/40 uppercase tracking-widest mt-2 sm:mt-3">
-                  Active users
-                </div>
+              <div className="border-x border-ink/10">
+                <div className="text-2xl sm:text-4xl lg:text-5xl text-ink tracking-[-0.03em]">15k+</div>
+                <div className="font-['DM_Mono'] text-[10px] sm:text-xs text-ink/40 uppercase tracking-widest mt-2 sm:mt-3">Active users</div>
               </div>
               <div>
-                <div className="text-2xl sm:text-4xl lg:text-5xl text-white tracking-[-0.03em]">
-                  4.8
-                </div>
-                <div className="font-['DM_Mono'] text-[10px] sm:text-xs text-white/40 uppercase tracking-widest mt-2 sm:mt-3">
-                  App Store rating
-                </div>
+                <div className="text-2xl sm:text-4xl lg:text-5xl text-ink tracking-[-0.03em]">4.8</div>
+                <div className="font-['DM_Mono'] text-[10px] sm:text-xs text-ink/40 uppercase tracking-widest mt-2 sm:mt-3">App Store rating</div>
               </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* App Interface Preview */}
-      <section className="py-8 sm:py-10 px-6">
-        <div className="max-w-content mx-auto">
-          <div className="grid lg:grid-cols-2 rounded-[1.25rem] overflow-hidden border-2 border-ink/[0.06]">
-            <div className="flex flex-col justify-center p-8 sm:p-12 bg-white">
-              <div className="inline-flex items-center gap-2 bg-chalk/80 border border-frost rounded-pill px-4 py-1.5 mb-6 w-fit">
-                <span className="w-1.5 h-1.5 bg-hi-yellow rounded-full" />
-                <span className="font-['DM_Mono'] text-sm text-ink/60">
-                  Philosophy
-                </span>
-              </div>
-              <h3 className="text-3xl sm:text-4xl lg:text-[44px] text-ink tracking-[-0.03em] leading-[1]">
-                Designed for
-                <br />
-                <span className="relative inline-block mt-1">
-                  <span className="relative z-10">real learning</span>
-                  <span className="absolute bottom-[0.05em] left-0 w-full h-[0.3em] bg-hi-yellow/50 -z-0 rounded-sm" />
-                </span>
-              </h3>
-              <p className="text-base text-ink/50 mt-5 leading-relaxed max-w-sm">
-                Our tutorials focus on practical skills you can apply
-                immediately. Learn by doing, not just watching.
-              </p>
-            </div>
-            <div className="relative flex items-center justify-center bg-hi-yellow p-10 sm:p-14 min-h-[240px] lg:min-h-[320px] overflow-hidden">
-              <img
-                src="/logo/Vector 1.png"
-                alt="Studevo logo"
-                className="w-32 sm:w-40 lg:w-48 relative z-10 animate-hero-float"
-              />
-              <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent pointer-events-none" />
             </div>
           </div>
         </div>
       </section>
 
       {/* Download App Section */}
-      <section id="download" className="py-10 px-6">
+      <section id="download" className="py-10 px-6 bg-chalk z-10 relative">
         <div className="max-w-content mx-auto">
           <div className="relative bg-ink rounded-[1.25rem] px-8 sm:px-14 py-14 sm:py-16 overflow-hidden">
             {/* Background logo */}
             <div
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none opacity-[0.08]"
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none opacity-[0.2]"
               aria-hidden
             >
               <img
@@ -608,7 +581,7 @@ export default function Index() {
       </section>
 
       {/* CTA Section */}
-      <section className="relative py-16 sm:py-20 px-6 overflow-hidden">
+      <section className="relative py-16 sm:py-20 px-6 overflow-hidden bg-chalk z-10">
         <div
           className="absolute inset-0 flex items-center justify-center pointer-events-none"
           aria-hidden

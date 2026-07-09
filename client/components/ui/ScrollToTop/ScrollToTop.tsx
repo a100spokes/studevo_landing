@@ -1,10 +1,12 @@
 "use client";
 import { useEffect, useState } from "react";
+import { useLenis } from "lenis/react";
 import styles from "./ScrollTop.module.css";
 import { MdKeyboardArrowUp } from "react-icons/md";
 
 export default function ScrollTop() {
   const [visible, setVisible] = useState(false);
+  const lenis = useLenis();
 
   useEffect(() => {
     const toggleVisibility = () => {
@@ -18,7 +20,11 @@ export default function ScrollTop() {
   }, []);
 
   function handleClick() {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    if (lenis) {
+      lenis.scrollTo(0, { duration: 1.5 });
+    } else {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
   }
 
   return (

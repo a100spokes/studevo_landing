@@ -147,7 +147,7 @@ export default function Layout({ children }: PropsWithChildren) {
           )}
         </header>
 
-        <main className="pt-16">{children}</main>
+        <main>{children}</main>
 
         {/* Footer */}
         <footer className="relative bg-ink text-white overflow-hidden">
@@ -166,7 +166,7 @@ export default function Layout({ children }: PropsWithChildren) {
           <div className="max-w-content mx-auto px-6 pt-16 pb-8 relative z-10">
             <div className="grid md:grid-cols-[1fr_auto_auto] gap-10 md:gap-20 mb-14">
               <div className="space-y-5">
-                <Link to="/" className="flex items-center gap-3">
+                <Link to="/" className="flex items-center gap-3 hover:scale-105 transition-all duration-300 origin-left">
                   <img
                     src="/logo/studevo_logo.png"
                     alt="Studevo"

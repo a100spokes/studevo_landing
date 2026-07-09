@@ -3,11 +3,24 @@ import Layout from "@/components/Layout";
 export default function Terms() {
   return (
     <Layout>
-      <section className="px-4 sm:px-6 lg:px-8 py-16">
-        <div className="max-w-4xl mx-auto">
-          <h1 className="text-4xl font-bold mb-6">Terms and Conditions</h1>
+      <section className="relative py-10 lg:py-12 px-6 overflow-hidden">
+        <div className="absolute -top-20 -right-20 w-[400px] h-[400px] bg-hi-yellow/10 rounded-full blur-3xl pointer-events-none" aria-hidden />
+        <div className="max-w-4xl mx-auto relative z-10">
+          <div className="mb-12">
+            <div className="inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm border border-frost rounded-pill px-4 py-1.5 mb-6">
+              <span className="w-1.5 h-1.5 bg-hi-yellow rounded-full" />
+              <span className="font-['DM_Mono'] text-sm text-ink/60">Legal</span>
+            </div>
+            <h1 className="text-4xl sm:text-5xl lg:text-[56px] text-ink leading-[1] tracking-[-0.03em]">
+              Terms and{" "}
+              <span className="relative inline-block">
+                <span className="relative z-10">Conditions</span>
+                <span className="absolute bottom-[0.05em] left-0 w-full h-[0.3em] bg-hi-yellow/50 -z-0 rounded-sm" />
+              </span>
+            </h1>
+          </div>
 
-          <article className="prose prose-slate max-w-none prose-headings:text-foreground prose-p:text-foreground/80 prose-li:text-foreground/80">
+          <article className="prose max-w-none prose-headings:text-ink prose-headings:tracking-[-0.02em] prose-p:text-ink/60 prose-li:text-ink/60 prose-a:text-ink prose-a:underline-offset-2 prose-strong:text-ink prose-h2:text-2xl prose-h2:mt-10 prose-h2:mb-4 prose-h3:text-lg prose-h3:mt-6 prose-h3:mb-3">
             <h2>1. Who We Are</h2>
             <p>
               These Terms of Service apply when you access, use or visit our

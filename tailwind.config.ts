@@ -9,10 +9,17 @@ export default {
       center: true,
       padding: "2rem",
       screens: {
-        "2xl": "1400px",
+        "2xl": "1200px",
       },
     },
     extend: {
+      maxWidth: {
+        content: "1200px",
+      },
+      fontFamily: {
+        sans: ["Inter", "ui-sans-serif", "system-ui", "sans-serif"],
+        mono: ["JetBrains Mono", "ui-monospace", "SFMono-Regular", "monospace"],
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -57,28 +64,40 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        // SuperHi decorative colors
+        iris: "#2727e6",
+        ink: "#111118",
+        chalk: "#f0f6ff",
+        frost: "#e1edff",
+        "marker-red": "#ff4141",
+        "hi-yellow": "#ffda00",
+        "powder-sky": "#b8d4e3",
+        bubblegum: "#ffbac4",
+        "jelly-green": "#16ab59",
+        sunbeam: "#e8d88c",
       },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
+        card: "24px",
+        btn: "48px",
+        pill: "5000px",
+        small: "16px",
+      },
+      boxShadow: {
+        "hard-sm": "0 2px 0 0 #111118",
+        "hard-md": "0 4px 0 0 #111118",
+        "hard-iris": "0 4px 0 0 #2727e6",
       },
       keyframes: {
         "accordion-down": {
-          from: {
-            height: "0",
-          },
-          to: {
-            height: "var(--radix-accordion-content-height)",
-          },
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
         },
         "accordion-up": {
-          from: {
-            height: "var(--radix-accordion-content-height)",
-          },
-          to: {
-            height: "0",
-          },
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
         },
       },
       animation: {

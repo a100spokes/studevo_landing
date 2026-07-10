@@ -204,10 +204,10 @@ export default function Index() {
                 Get started <ArrowRight className="w-5 h-5" />
               </a>
               <a
-                href="#tutorials"
+                href="#download"
                 className="inline-flex items-center gap-2 text-ink text-lg px-7 py-3.5 rounded-btn border-2 border-ink/20 hover:border-ink/40 transition-colors duration-150"
               >
-                Browse tutorials
+                Download app
               </a>
             </div>
 

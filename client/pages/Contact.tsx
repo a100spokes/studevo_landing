@@ -27,6 +27,35 @@ const topics = [
 
 export default function Contact() {
   const [selectedTopic, setSelectedTopic] = useState("technical");
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
+  const [subject, setSubject] = useState("");
+  const [message, setMessage] = useState("");
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    if (!email || !name || !message) return;
+    setStatus("sending");
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ topic: selectedTopic, email, name, subject, message }),
+      });
+      if (res.ok) {
+        setStatus("sent");
+        setEmail("");
+        setName("");
+        setSubject("");
+        setMessage("");
+      } else {
+        setStatus("error");
+      }
+    } catch {
+      setStatus("error");
+    }
+  }
 
   return (
     <Layout>
@@ -156,7 +185,7 @@ export default function Contact() {
                 Fill in the form and we'll reply to your email.
               </p>
 
-              <form className="space-y-5" onSubmit={(e) => e.preventDefault()}>
+              <form className="space-y-5" onSubmit={handleSubmit}>
                 <div className="grid grid-cols-2 gap-4">
                   <div>
                     <label className="block font-['DM_Mono'] text-[11px] text-ink/40 uppercase tracking-widest mb-2">
@@ -181,6 +210,9 @@ export default function Contact() {
                     <input
                       type="email"
                       placeholder="you@example.com"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      required
                       className="w-full bg-chalk border-2 border-ink/[0.06] rounded-xl px-4 py-3 text-sm text-ink placeholder:text-ink/25 focus:outline-none focus:border-ink/30 transition-colors"
                     />
                   </div>
@@ -194,6 +226,9 @@ export default function Contact() {
                     <input
                       type="text"
                       placeholder="Your name"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                      required
                       className="w-full bg-chalk border-2 border-ink/[0.06] rounded-xl px-4 py-3 text-sm text-ink placeholder:text-ink/25 focus:outline-none focus:border-ink/30 transition-colors"
                     />
                   </div>
@@ -204,6 +239,8 @@ export default function Contact() {
                     <input
                       type="text"
                       placeholder="Short summary"
+                      value={subject}
+                      onChange={(e) => setSubject(e.target.value)}
                       className="w-full bg-chalk border-2 border-ink/[0.06] rounded-xl px-4 py-3 text-sm text-ink placeholder:text-ink/25 focus:outline-none focus:border-ink/30 transition-colors"
                     />
                   </div>
@@ -216,16 +253,26 @@ export default function Contact() {
                   <textarea
                     rows={5}
                     placeholder="Tell us what you need help with..."
+                    value={message}
+                    onChange={(e) => setMessage(e.target.value)}
+                    required
                     className="w-full bg-chalk border-2 border-ink/[0.06] rounded-xl px-4 py-3 text-sm text-ink placeholder:text-ink/25 focus:outline-none focus:border-ink/30 transition-colors resize-y"
                   />
                 </div>
 
                 <button
                   type="submit"
-                  className="w-full inline-flex items-center justify-center gap-2 bg-ink text-white text-base px-6 py-3.5 rounded-xl font-semibold shadow-[0_4px_16px_rgba(0,0,0,0.12)] hover:translate-y-[-2px] hover:shadow-[0_8px_24px_rgba(0,0,0,0.18)] active:translate-y-0 active:shadow-[0_2px_8px_rgba(0,0,0,0.1)] transition-all duration-200"
+                  disabled={status === "sending"}
+                  className="w-full inline-flex items-center justify-center gap-2 bg-ink text-white text-base px-6 py-3.5 rounded-xl font-semibold shadow-[0_4px_16px_rgba(0,0,0,0.12)] hover:translate-y-[-2px] hover:shadow-[0_8px_24px_rgba(0,0,0,0.18)] active:translate-y-0 active:shadow-[0_2px_8px_rgba(0,0,0,0.1)] transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:translate-y-0"
                 >
-                  Submit <ArrowRight className="w-4 h-4" />
+                  {status === "sending" ? "Sending..." : <>Submit <ArrowRight className="w-4 h-4" /></>}
                 </button>
+                {status === "sent" && (
+                  <p className="text-sm text-jelly-green text-center mt-3">Message sent successfully! We'll get back to you soon.</p>
+                )}
+                {status === "error" && (
+                  <p className="text-sm text-marker-red text-center mt-3">Something went wrong. Please try again.</p>
+                )}
                 <p className="text-xs text-ink/30 text-center mt-3">
                   By submitting this form, you agree that we may contact you at
                   the email address provided.

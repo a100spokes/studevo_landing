@@ -2,10 +2,9 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 
-// TODO: ЗАМЕНИТЬ ССЫЛКИ !!!
-const APP_STORE_URL = "https://apps.apple.com/app/studevo/id000000000";
+const APP_STORE_URL = "https://apps.apple.com/app/id6778729518";
 const GOOGLE_PLAY_URL =
-  "https://play.google.com/store/apps/details?id=com.studevo.app";
+  "https://play.google.com/store/apps/details?id=com.grow.studevo";
 
 type Platform = "ios" | "android" | "unknown";
 

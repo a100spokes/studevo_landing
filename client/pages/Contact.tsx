@@ -38,7 +38,7 @@ export default function Contact() {
     if (!email || !name || !message) return;
     setStatus("sending");
     try {
-      const res = await fetch("/api/contact", {
+      const res = await fetch("/api/contact.php", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ topic: selectedTopic, email, name, subject, message }),

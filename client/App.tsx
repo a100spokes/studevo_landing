@@ -12,6 +12,7 @@ import Terms from "./pages/Terms";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import SubscriptionTerms from "./pages/SubscriptionTerms";
 import Contact from "./pages/Contact";
+import AppRedirect from "./pages/AppRedirect";
 import ScrollToTop from "@/components/ScrollToTop";
 
 const queryClient = new QueryClient();
@@ -29,6 +30,7 @@ const App = () => (
           <Route path="/privacy" element={<PrivacyPolicy />} />
           <Route path="/subscription-terms" element={<SubscriptionTerms />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/app" element={<AppRedirect />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

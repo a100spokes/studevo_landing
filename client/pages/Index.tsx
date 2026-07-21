@@ -555,7 +555,9 @@ export default function Index() {
               </div>
               <div className="flex items-center gap-4">
                 <a
-                  href="#"
+                  href="https://apps.apple.com/app/id6778729518"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="hover:translate-y-[-3px] hover:brightness-110 transition-all duration-300"
                 >
                   <img
@@ -565,7 +567,9 @@ export default function Index() {
                   />
                 </a>
                 <a
-                  href="#"
+                  href="https://play.google.com/store/apps/details?id=com.grow.studevo"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="hover:translate-y-[-3px] hover:brightness-110 transition-all duration-300"
                 >
                   <img
